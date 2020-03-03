@@ -9,9 +9,13 @@ const bookAuthor = document.getElementById("bookAuthor");
 const searchResult = document.getElementById("searchResult");
 const bookmark = document.getElementById("bookmark");
 const  bookshelf =document.getElementById("content");
-const resultItem= document.getElementById("resultItem");
+const resultTitle =document.getElementById("resultTitle");
+const resultAuthor = document.getElementById("resultAuthor");
+const resultImg = document.getElementById("resultImg");
+const resultBook = document.getElementById("resultBook");
 
 
+console.log(bookmark.innerText);
 
 addButton.addEventListener('click',  () =>{
     addButton.style.display ="none";
@@ -41,14 +45,20 @@ apiRequest.onreadystatechange = function() {
             let title= myObj.items[i]["volumeInfo"]["title"];
             let author =myObj.items[i]["volumeInfo"]["authors"][0];
             let url = myObj.items[i]["volumeInfo"]["imageLinks"]["thumbnail"];
-        searchResult.innerHTML +=
-            "<div> "+title+" <br> "+author+"</div>"+ "<br>"+
-            "<img  src = "+url+" />"+
-            "<button class='fa fa-bookmark' id='bookmark'/> sasas"
-
+      searchResult.innerHTML += "<div id='resultBook'>" +
+            "<h4 id='resultTitle'>"+title+"</h4>"+
+           "<h5 id='resultAuthor'>"+ author+"</h5>"+
+           "<img src="+url+">" +"<button type='button' class='fa fa-bookmark' id='bookmark' style=\"display:none\"></button>"
+            +"</div>";
         }
+
+
+
+
     }
 };
+
+
 
 searchForm.addEventListener('submit', ($event) => {
     $event.preventDefault();
@@ -57,6 +67,17 @@ searchForm.addEventListener('submit', ($event) => {
     apiRequest.open('GET', "https://www.googleapis.com/books/v1/volumes?q=" +titleInput + authorInput );
     apiRequest.send();
 });
+
+
+
+function saveBook() {
+
+
+
+
+}
+
+
 
 
 
