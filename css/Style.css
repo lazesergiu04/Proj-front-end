@@ -1,0 +1,59 @@
+
+
+
+
+
+#myBooks{
+    text-align: center;
+}
+
+#btn-add{
+    background-color: #526aaf;
+    color: white;
+    padding: 10px 20px;
+    font-size: 13px;
+    display: inline;
+}
+
+#newBook{
+    display: inline;
+}
+
+#searchForm{
+    display:none;
+
+}
+.searchForm{
+    font-size:15px ;
+
+}
+#bookTitle, #bookAuthor{
+    text-align: left;
+    width: 600px;
+    padding: 8px 15px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+#searchResult{
+
+
+    border: solid black 1px;
+
+}
+#resultItem{
+    border: 1px sienna solid;
+    width: 324px;
+
+}
+
+#bookmark{
+    size: 30px;
+    background-color: white;
+    border: none;
+}
+
+
+
+
+
+

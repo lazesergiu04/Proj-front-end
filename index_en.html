@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>PocketBooks</title>
+		<link href="css/Style.css" type="text/css" rel="stylesheet">
+		<link id="icon" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  	</head>
+  	<body>
+		<div id="myBooks">
+			<h1 class="title">PocketBooks</h1>
+			<h2 id="newBook">New Book</h2>
+			<br>
+				<button id="btn-add">Add a book
+				</button>
+			<hr>
+			<div id="content">
+				<h2>My Bookshelf</h2>
+				<hr>
+
+			</div>
+			<form id="searchForm">
+				<h2 id="formName">Add some books on your shelf</h2><br>
+				<label for="content">Book Title:</label><br>
+				<input type="text" id="bookTitle" ><br>
+				<label for="content">Book's Author:</label><br>
+				<input type="text" id="bookAuthor" ><br>
+				<button id="btn-search" type="submit">Search</button>
+				<button id="btn-cancel" type="reset">Cancel</button>
+
+			</form>
+
+			<div  style="display:table-row" id="searchResult">
+
+
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+  	</body>
+</html>
