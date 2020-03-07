@@ -51,12 +51,13 @@ apiRequest.onreadystatechange = function() {
         const result = JSON.parse(this.responseText);
         for (let x = 0; x < result.items.length; x++) {
             let res = result.items[x];
-            booksResult.push(res);
+            booksResult = [res];
+            console.log(result)
         }
         for (let i = 0; i < booksResult.length; i++) {
-            let title = booksResult[i]["volumeInfo"]["title"];
-            let author = booksResult[i]["volumeInfo"]["authors"];
-            let url = booksResult[i]["volumeInfo"]["imageLinks"]["thumbnail"];
+            let title = booksResult["volumeInfo"]["title"];
+            let author = booksResult["volumeInfo"]["authors"];
+            let url = booksResult["volumeInfo"]["imageLinks"]["thumbnail"];
             const book = {title, author, url}
             bookElements.push(book)
 
