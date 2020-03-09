@@ -60,25 +60,43 @@ apiRequest.onreadystatechange = function() {
 
 function bookmarkBook(bookId) {
   const currentBook = booksResult.filter(book => book.id === bookId);
-  sessionStorage.setItem(bookId, JSON.stringify(currentBook));
+  sessionStorage.setItem(bookId,JSON.stringify( currentBook));
   alert(`${currentBook[0].volumeInfo.title} Bookmarked!`);
+  sessionStorage.getItem(bookId);
+  const savedTitle= currentBook[0].volumeInfo.title;
+  const savedAuthor = currentBook[0].volumeInfo.authors;
+  const savedUrl = currentBook[0].volumeInfo.imageLinks.thumbnail;
+
+
+  bookshelf.innerHTML +=
+     '<div id="savedResult" >' +'<button type="button" class="fa fa-trash" onclick="trashBook(\'' + bookId+ '\')"></button>'+
+     savedTitle +'<br>'+ savedAuthor + '<br>' +
+     '<img src='+savedUrl+'/>'
+
+  +'</div>';
 
 }
+
+function trashBook(bookId) {
+  sessionStorage.removeItem(bookId);
+  document.getElementById("savedResult").remove();
+
+}
+
+
 
 function bookFormat(bookId, title, author, url) {
   let bookForm =
     '<div>' +
-    '<button type="button" class="fa fa-bookmark" onclick="bookmarkBook(\'' +
-    bookId +
-    '\')"></button>;' +
+    '<button type="button" class="fa fa-bookmark" onclick="bookmarkBook(\'' + bookId +
+    '\')"></button>' +
     "<h4 id='resultTitle'>" +
     title +
     '</h4>' +
     "<h5 id='resultAuthor'>" +
     author +
     '</h5>' +
-    '<img src=' +
-    url +
+    '<img src=' +url +
     ' />' +
     '</div>';
   return bookForm;
