@@ -48,18 +48,56 @@ apiRequest.onreadystatechange = function() {
     for (let i = 0; i < booksResult.length; i++) {
       const currentBook = booksResult[i];
       const bookId = currentBook.id;
+      const ISBN = availableISBN(currentBook);
+      const description = limitedDescription(currentBook);
       const title = currentBook.volumeInfo.title;
-      const author = currentBook.volumeInfo.authors;
-      const url = availablePicture(currentBook);
-      const book = bookFormat(bookId, title, author, url);
+      const author = availableTitle(currentBook);
+      const url =  availablePicture(currentBook);
+      const book = bookFormat(bookId, title, author, url, description, ISBN);
       bookElements.push(book);
+
+
     }
     searchResult.innerHTML += bookElements;
   }
 };
+function availableISBN(currentBook) {
+  let ISBNs;
+  if (currentBook.volumeInfo.industryIdenfiers){
+    ISBNs = currentBook.volumeInfo.industryIdenfiers[0].identifier
+  }else { ISBNs = "ISBN not available"}
+  return ISBNs;
+
+}
+
+function availableTitle(currentBook) {
+  let authors ;
+  if (currentBook.volumeInfo.authors){
+    authors = currentBook.volumeInfo.authors[0]
+  } else { authors = "Anonymous author"}
+return authors;
+}
+
+
+ function limitedDescription(currentBook) {
+  let desc;
+  if( currentBook.volumeInfo.description){
+    desc = currentBook.volumeInfo.description.slice(0,200) +"..."
+  }
+  else { desc="Missing Information"}
+  return desc;
+}
+
+
+
+
 function availablePicture(currentBook) {
-  if (currentBook.contains(currentBook.volumeInfo.imageLink) ) {
-    "css/unavailable-resized.png"} else { currentBook["volumeInfo"]["imageLinks"]["thumbnail"]}
+ let imageLinks;
+  if (currentBook.volumeInfo.imageLinks )
+  {imageLinks = currentBook.volumeInfo.imageLinks.thumbnail
+
+  }else {imageLinks = "css/unavailable-resized.png"}
+  return imageLinks;
 
 }
 
@@ -70,23 +108,27 @@ function bookmarkBook(bookId) {
   alert(`${currentBook[0].volumeInfo.title} Bookmarked!`);
 
   sessionStorage.getItem(bookId);
+
+  const savedDescription = currentBook[0].volumeInfo.description.slice(0,200);
   const savedTitle= currentBook[0].volumeInfo.title;
   const savedAuthor = currentBook[0].volumeInfo.authors;
   const savedUrl = currentBook[0].volumeInfo.imageLinks.thumbnail;
-  const savedBook = savedBookFormat(bookId,savedTitle,savedAuthor,savedUrl);
+  const savedBook = savedBookFormat(bookId,savedTitle,savedAuthor,savedUrl, savedDescription,savedISBN);
 
 bookshelf.innerHTML +=savedBook;
 
 
 }
-function savedBookFormat(bookId, savedTitle, savedAuthor, savedUrl){
-  let savedBookForm=  '<div id="savedResult" >' +'<button type="button" id="trash" class="fa fa-trash" onclick="trashBook(\'' + bookId+ '\')"></button>'+
+function savedBookFormat(bookId, savedTitle, savedAuthor, savedUrl, savedDescription){
+  let savedBookForm=  '<div id="savedResult" >' +'<button type="button" id="trash" class="fa fa-trash" onclick="trashBook(\'' + bookId+ '\')"></button>'+"<br>"+
       savedTitle +'<br>'+ savedAuthor + '<br>' +
-      '<img src='+savedUrl+'/>'
+      '<img src='+savedUrl+'/>' + '<p>' +savedDescription+ '...'+'</p>' + '<br>'
 
       +'</div>';
   return savedBookForm;
 }
+
+
 
 function trashBook(bookId) {
   sessionStorage.removeItem(bookId);
@@ -96,13 +138,14 @@ function trashBook(bookId) {
 
 
 
-function bookFormat(bookId, title, author, url) {
+function bookFormat(bookId, title, author, url, description,ISBN) {
   let bookForm =
-    '<div>' +
+    '<div id="bookResult">' +
     '<button type="button"  id= "bookmark"class="fa fa-bookmark" onclick="bookmarkBook(\'' + bookId + '\')"></button>' +
     "<h4 id='resultTitle'>" + title + '</h4>' +
     "<h5 id='resultAuthor'>" + author + '</h5>' +
     '<img src=' +url + ' />' +
+      '<p>'+description+'</p>'+ '<br>'+'<h5>'+'ISBN:' +ISBN+'</h5>'+
     '</div>';
   return bookForm;
 }

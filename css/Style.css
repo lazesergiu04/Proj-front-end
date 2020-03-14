@@ -1,4 +1,14 @@
+@media all and (max-width: 320px) {
+    #savedResult {
+        display: inline;
+        flex-flow: wrap;
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+        justify-content: space-evenly;
+    }
 
+}
 
 .title{
     font-family: "Calisto MT";
@@ -77,9 +87,13 @@
     align-self: center;
 }
 #btn-search, #btn-cancel{
-    background-color: ghostwhite;
+    border-radius: 10%;
+    background-color: #6897bb;
     border-radius: 10%;
     box-shadow: black;
+}
+#bookResult{
+    border-bottom: #6897bb solid 2px;
 }
 
 
