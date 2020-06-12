@@ -1,1 +1,0 @@
-hello, the objective of this project is to use Api Google books to search for books base on the title and author. I think i manage to sort ou the Api but i can;t go further. the next step in the project is to add a button with the bookmark icon and when that buttons is clicked, the book will be saved on session storage. Thank you.

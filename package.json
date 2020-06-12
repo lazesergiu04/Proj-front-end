@@ -1,0 +1,32 @@
+{
+  "name": "index_en.html",
+  "version": "1.0.0",
+  "description": "Project 6 on OpenClassrooms Salesforce path.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lazesergiu04/Proj-front-end.git"
+  },
+  "author": "Sergiu Laze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lazesergiu04/Proj-front-end/issues"
+  },
+  "homepage": "https://github.com/lazesergiu04/Proj-front-end#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-uglify": "^3.0.2",
+    "jshint": "^2.11.0",
+    "run-sequence": "^2.2.1"
+  }
+}

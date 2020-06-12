@@ -51,7 +51,7 @@ apiRequest.onreadystatechange = function() {
       const ISBN = availableISBN(currentBook);
       const description = limitedDescription(currentBook);
       const title = currentBook.volumeInfo.title;
-      const author = availableAuthor(currentBook);
+      const author = availableTitle(currentBook);
       const url =  availablePicture(currentBook);
       const book = bookFormat(bookId, title, author, url, description, ISBN);
       bookElements.push(book);
@@ -70,7 +70,7 @@ function availableISBN(currentBook) {
 
 }
 
-function availableAuthor(currentBook) {
+function availableTitle(currentBook) {
   let authors ;
   if (currentBook.volumeInfo.authors){
     authors = currentBook.volumeInfo.authors[0]
@@ -109,7 +109,7 @@ function bookmarkBook(bookId) {
 
   sessionStorage.getItem(bookId);
 
-  const savedDescription = currentBook[0].volumeInfo.description.slice(0,200);
+  const savedDescription = currentBook[0].volumeInfo.description;
   const savedTitle= currentBook[0].volumeInfo.title;
   const savedAuthor = currentBook[0].volumeInfo.authors;
   const savedUrl = currentBook[0].volumeInfo.imageLinks.thumbnail;
